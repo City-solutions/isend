@@ -1,0 +1,489 @@
+/* Global Styling */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  color: #3751fe;
+  line-height: 1.6;
+  background-color: #F0F4F8;
+  overflow-x: hidden;
+}
+
+/* Header */
+header {
+  background: #3751fe;
+  padding: 1.5rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Navbar Styles */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+}
+
+.nav-links ul {
+  display: flex;
+  list-style: none;
+  margin-right: 1.5rem;
+}
+
+.nav-links ul li {
+  margin: 0 1rem;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+.nav-links ul li a {
+  color: #F0F4F8 !important;
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.3s;
+}
+
+.logo {
+  font-size: 1.8rem;
+  color: #FFF;
+  font-weight: 700;
+}
+
+/* CTA Button */
+.cta-button {
+  background: #FFF;
+  color: #3751fe;
+  padding: 0.6rem 1.5rem;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.nav-links ul li a:hover, .cta-button:hover {
+  color: #DDE6F0;
+}
+
+.cta-button:hover {
+  background-color: #DDE6F0;
+  color: #3751fe;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.hero {
+  background: url('https://media.istockphoto.com/id/1377893181/photo/shot-of-young-man-delivering-a-package-while-sitting-in-a-vehicle.jpg?s=612x612&w=0&k=20&c=yOMqI9TcSFRPKuLl40lUsjYmRkji9hoH_eUtKPUrZwk=') center/cover no-repeat;
+  height: 90vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #FFF;
+  text-align: center;
+  padding: 0 5%;
+}
+
+.hero-content h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero-content p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+/* Button Group */
+.button-group {
+  display: flex;
+  flex-direction: column; /* Change to row for horizontal layout */
+  gap: 1rem; /* Space between buttons */
+  align-items: center; /* Center the buttons */
+}
+
+/* Styled Buttons */
+.hero-button, .app-button {
+  background: #3751fe; /* Same background color */
+  color: #FFF; /* White text */
+  padding: 0.8rem 2rem; /* Consistent padding */
+  border-radius: 50px; /* Rounded corners */
+  font-weight: 600;
+  text-decoration: none; /* Remove underline */
+  transition: all 0.3s ease; /* Smooth transition */
+  display: inline-block; /* Ensure they behave like buttons */
+}
+
+.hero-button:hover, .app-button:hover {
+  background-color: #2D49C8; /* Darker on hover */
+}
+
+.app-button img {
+  height: 50px; /* Ensure the Play Store badge is responsive */
+  width: auto; /* Keep aspect ratio */
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .hero-content h2 {
+      font-size: 2rem;
+  }
+
+  .hero-content p {
+      font-size: 1rem;
+  }
+
+  .hero-button, .app-button {
+      width: 100%; /* Full width on smaller screens */
+  }
+}
+
+
+.hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.hero-button {
+  background: #FFF;
+  color: #3751fe;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  transition: transform 0.3s ease;
+}
+
+.hero-button:hover {
+  transform: scale(1.05);
+  background: #DDE6F0;
+  color: #3751fe;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Hero Section - App Button */
+.hero .app-button {
+  display: inline-block;
+  margin-top: 1.5rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+
+.hero .app-button img {
+  height: 50px;
+  width: auto;
+}
+
+.hero .app-button:hover {
+  transform: scale(1.05);
+}
+
+/* Request Form */
+.request-form {
+  padding: 3rem 5%;
+  background: #FFF;
+  margin-top: 2rem;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+
+.request-form h2 {
+  font-size: 2rem;
+  color: #3751fe;
+  margin-bottom: 1.5rem;
+}
+
+.request-form input, .request-form button {
+  padding: 1rem;
+  width: 80%;
+  max-width: 400px;
+  margin-bottom: 1rem;
+  border-radius: 30px;
+  border: 1px solid #DDD;
+  font-size: 1rem;
+}
+
+.request-form input:focus {
+  outline: none;
+  border: 1px solid #3751fe;
+}
+
+.request-form button {
+  background-color: #3751fe;
+  color: #FFF;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.request-form button:hover {
+  background-color: #2D49C8;
+}
+
+/* How It Works Section */
+.how-it-works {
+  padding: 3rem 5%;
+  background-color: #F0F4F8;
+}
+
+.how-it-works h2 {
+  font-size: 2rem;
+  color: #3751fe;
+  margin-bottom: 2rem;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.step {
+  flex: 1;
+  background: #FFF;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.step:hover {
+  transform: translateY(-5px);
+}
+
+/* Features Section */
+.features {
+  padding: 3rem 5%;
+  background-color: #FFF;
+}
+
+.features h2 {
+  font-size: 2rem;
+  color: #3751fe;
+  margin-bottom: 2rem;
+}
+
+.feature-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 1.5rem;
+}
+
+.feature {
+  background: #F9FAFB;
+  padding: 2rem;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 250px;
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.feature:hover {
+  transform: translateY(-5px);
+}
+
+/* Pricing Section */
+.pricing {
+  padding: 3rem 5%;
+  background-color: #F0F4F8;
+}
+
+.pricing h2 {
+  font-size: 2rem;
+  color: #3751fe;
+  margin-bottom: 2rem;
+}
+
+.pricing-options {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.price-option {
+  background: #FFF;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0px 8px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  flex: 1;
+  max-width: 600px;
+  transition: transform 0.3s ease;
+}
+
+.price-option:hover {
+  transform: translateY(-5px);
+}
+
+/* Contact Section */
+.contact {
+  padding: 3rem 5%;
+  background: #F0F4F8;
+  text-align: center;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  color: #3751fe;
+  margin-bottom: 1rem;
+}
+
+.contact p {
+  margin-bottom: 1.5rem;
+  color: #555;
+  font-size: 1rem;
+}
+
+.contact form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contact input, .contact textarea {
+  padding: 1rem;
+  width: 80%;
+  max-width: 500px;
+  margin-bottom: 1rem;
+  border-radius: 10px;
+  border: 1px solid #DDD;
+  font-size: 1rem;
+}
+
+.contact textarea {
+  resize: none;
+}
+
+.contact button {
+  background-color: #3751fe;
+  color: #FFF;
+  padding: 0.8rem 2rem;
+  border-radius: 50px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.contact button:hover {
+  background-color: #2D49C8;
+}
+
+/* Footer */
+footer {
+  background: #3751fe;
+  padding: 1.5rem 5%;
+  color: #FFF;
+  text-align: center;
+}
+
+footer p {
+  margin-bottom: 1rem;
+}
+
+.social-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.social-icons a {
+  color: #FFF;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.social-icons a:hover {
+  color: #DDE6F0;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  /* Header */
+  .nav-links ul {
+    flex-direction: column;
+    gap: 1rem;
+    color: white;
+  }
+
+  .navbar {
+    flex-direction: column;
+  }
+
+  /* Hero Section */
+  .hero h2 {
+    font-size: 1.8rem;
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-button,
+  .app-button img {
+    width: 100%;
+  }
+
+  /* Sections */
+  .steps,
+  .feature-list,
+  .pricing-options {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step,
+  .feature,
+  .price-option {
+    max-width: 90%;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Smaller screens */
+  .hero h2 {
+    font-size: 1.5rem;
+  }
+
+  .hero p {
+    font-size: 0.9rem;
+  }
+
+  /* Form and Contact Inputs */
+  .request-form input,
+  .contact input,
+  .contact textarea {
+    width: 95%;
+  }
+}
+
+
+.request-form input {
+  border: 1px solid #DDD;
+  border-radius: 30px;
+}
+
+.request-form button {
+  background-color: #3751fe;
+  color: #FFF;
+  border-radius: 50px;
+}
