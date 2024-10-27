@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>iSend - Your Delivery Solution</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+</head>
+
+<body>
+
+    <!-- Header -->
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <h1 class="logo">iSend</h1>
+            <div class="nav-links">
+                <ul>
+                    <li><a href="#how-it-works">How It Works</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <!-- Request Pickup button aligned to the right -->
+                <a href="#request-form" class="cta-button">Request Pickup</a>
+            </div>
+        </nav>
+    </header>
+
+
+    <!-- Hero Section -->
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content" data-aos="fade-up">
+            <h2>Delivering Trust, One Package at a Time.</h2>
+            <p>Fast, reliable, and seamless delivery services. Wherever you are, whenever you need.</p>
+            <a href="#request-form" class="hero-button">Get Started</a>
+            <!-- Get the App Button with Google Play Icon -->
+            <a href="https://play.google.com/store" target="_blank" class="app-button">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                    alt="Get it on Google Play">
+            </a>
+        </div>
+    </section>
+
+
+    <!-- Request Form -->
+    <section id="request-form" class="request-form">
+        <h2 data-aos="fade-right">Request a Pickup</h2>
+        <form>
+            <input type="text" placeholder="Pickup Address" required>
+            <input type="text" placeholder="Drop-off Address" required>
+            <input type="text" placeholder="Package Details (size, weight)" required>
+            <input type="datetime-local" required>
+            <button type="submit" class="cta-button">Get My Package Delivered</button>
+        </form>
+    </section>
+
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <h2 data-aos="fade-left">How It Works</h2>
+        <div class="steps">
+            <div class="step" data-aos="zoom-in">
+                <h3>1. Request a Pickup</h3>
+                <p>Describe your package, and we'll handle the rest.</p>
+            </div>
+            <div class="step" data-aos="zoom-in">
+                <h3>2. Track in Real-Time</h3>
+                <p>Follow your package with our live tracking feature.</p>
+            </div>
+            <div class="step" data-aos="zoom-in">
+                <h3>3. Safe & On-Time Delivery</h3>
+                <p>Your package arrives safely at its destination.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <h2 data-aos="fade-up">Why Choose iSend?</h2>
+        <div class="feature-list">
+            <div class="feature" data-aos="fade-up">
+                <h3>Same-Day Delivery</h3>
+                <p>Fast, reliable service whenever you need it.</p>
+            </div>
+            <div class="feature" data-aos="fade-up">
+                <h3>Real-Time Tracking</h3>
+                <p>Know exactly where your package is at all times.</p>
+            </div>
+            <div class="feature" data-aos="fade-up">
+                <h3>Affordable Pricing</h3>
+                <p>Transparent, cost-effective pricing options.</p>
+            </div>
+            <div class="feature" data-aos="fade-up">
+                <h3>Wide Coverage</h3>
+                <p>Delivery across multiple locations and cities.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="pricing">
+        <h2 data-aos="fade-right">Pricing Plans</h2>
+        <div class="pricing-options">
+            <div class="price-option" data-aos="zoom-in">
+                <h3>Per Delivery</h3>
+                <p>Pay per delivery based on distance.</p>
+                <a href="#request-form" class="cta-button">Choose Plan</a>
+            </div>
+            <div class="price-option" data-aos="zoom-in">
+                <h3>Monthly Subscription</h3>
+                <p>Unlimited deliveries for a fixed monthly price.</p>
+                <a href="#request-form" class="cta-button">Choose Plan</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <h2 data-aos="fade-up">Contact Us</h2>
+        <p data-aos="fade-up">Have questions? Reach out to us, and we'll get back to you shortly!</p>
+        <form data-aos="fade-up">
+            <input type="text" placeholder="Your Name" required>
+            <input type="email" placeholder="Your Email" required>
+            <textarea placeholder="Your Message" rows="4" required></textarea>
+            <button type="submit" class="cta-button">Send Message</button>
+        </form>
+    </section>
+
+    <!-- Footer -->
+    <!-- Footer -->
+    <footer>
+        <p>© 2024 iSend. All rights reserved.</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.whatsapp.com" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+    </footer>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1200,
+        });
+    </script>
+</body>
+
+</html>
