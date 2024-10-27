@@ -6,15 +6,16 @@ function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="bg-blue-900 shadow-md sticky top-0 z-50">
+    <header className="bg-blue-900 shadow-md sticky top-0 z-50 border-b-4 border-blue-800">
       <nav className="container mx-auto flex justify-between items-center p-4 md:px-8 lg:px-16">
         <a href="#" className="text-2xl font-bold text-white transition duration-200 hover:text-blue-300">
           iSend
         </a>
 
-        <div className="md:hidden">
+        {/* Toggle Button for Mobile View */}
+        <div className="md:hidden flex items-center">
           <button
-            className="text-white focus:outline-none"
+            className="text-white bg-blue-800 p-2 rounded-md hover:bg-blue-700 focus:outline-none transition-all duration-200"
             aria-label="Open Menu"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -39,9 +40,9 @@ function Header() {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } w-full md:flex md:items-center md:w-auto md:space-x-8`}
+          } w-full md:flex md:items-center md:w-auto md:space-x-8 text-white`}
         >
-          <ul className="flex flex-col md:flex-row md:space-x-8 text-white">
+          <ul className="flex flex-col md:flex-row md:space-x-8">
             <li className="flex items-center">
               <FontAwesomeIcon icon={faHome} className="mr-2" />
               <a href="#how-it-works" className="hover:text-blue-300 transition duration-200">How It Works</a>
