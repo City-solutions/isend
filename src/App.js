@@ -6,6 +6,7 @@ import HowItWorks from './components/HowItWorks';
 import Pricing from './components/Pricing';
 import Footer from './components/Footer';
 import Aos from 'aos';
+import Contact from './components/Contact';
 
 Aos.init({
   duration: 1200, // Animation duration in milliseconds
@@ -19,6 +20,7 @@ function App() {
       <RequestForm />
       <HowItWorks />
       <Pricing />
+      <Contact />
       <Footer />
     </div>
   );

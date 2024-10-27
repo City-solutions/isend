@@ -170,7 +170,7 @@ const RequestForm = () => {
         </form>
       </div>
 
-      <div className="md:w-1/2 lg:w-3/5 h-96 rounded-lg overflow-hidden shadow-lg">
+      <div className="md:w-1/2 lg:w-3/5 h-96 rounded-lg overflow-hidden shadow-lg p-5">
         <GoogleMap
           mapContainerStyle={{ height: '100%', width: '100%', borderRadius: '8px', marginLeft: '16px' }}
           zoom={10}
