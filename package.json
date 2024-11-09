@@ -15,6 +15,7 @@
     "aos": "^2.3.4",
     "axios": "^1.7.7",
     "boostrap": "^2.0.0",
+    "html2canvas": "^1.4.1",
     "leaflet": "^1.9.4",
     "places.js": "^1.19.0",
     "react": "^18.3.1",
