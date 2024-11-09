@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react'; 
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../App';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
@@ -13,7 +13,7 @@ Aos.init({
 });
 
 const SuccessScreen = () => {
-  const { data } = useContext(AppContext); 
+  const { data } = useContext(AppContext);
   console.log(data?.data?.data?.cost);
   const price = data?.data?.data?.cost;
 
@@ -44,7 +44,10 @@ const SuccessScreen = () => {
           Request Submitted Successfully!
         </h1>
         <p className="text-lg mb-4 text-gray-700">
-          Your estimated price is: <span className="font-semibold text-green-500">FCFA {price}</span>
+          Your estimated price is:
+          <span className="font-semibold text-green-500 text-2xl border-b-2 border-green-500 transition duration-300 hover:text-green-600">
+            FCFA {price}
+          </span>
         </p>
         <p className="text-md mb-8 text-gray-600">Choose a payment method:</p>
 
