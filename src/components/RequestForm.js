@@ -1,24 +1,38 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState, useContext } from 'react';
 import { GoogleMap, useLoadScript, DirectionsService, DirectionsRenderer } from '@react-google-maps/api';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapMarkerAlt, faBox, faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
+import { fetchCategories, submitRequest } from '../services/apiService';
+import { useNavigate } from 'react-router-dom';
+import { AppContext } from '../App';
+
 
 const libraries = ["places", "directions"];
 
 const RequestForm = () => {
   const [pickupAddress, setPickupAddress] = useState('');
+  const [pickupLat, setPickupLat] = useState('');
+  const [pickupLng, setPickupLng] = useState('');
   const [dropOffAddress, setDropOffAddress] = useState('');
-  const [packageDetails, setPackageDetails] = useState('');
+  const [dropOffLat, setDropOffLat] = useState('');
+  const [dropOffLng, setDropOffLng] = useState('');
+  const [itemName, setItemName] = useState('');
+  const [itemDescription, setItemDescription] = useState('');
   const [deliveryDate, setDeliveryDate] = useState('');
   const [senderName, setSenderName] = useState('');
-  const [receiverName, setReceiverName] = useState('');
-  const [receiverPhone, setReceiverPhone] = useState('');
+  const [recipientName, setRecipientName] = useState('');
+  const [recipientPhone, setRecipientPhone] = useState('');
+  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState([]);
   const [directions, setDirections] = useState(null);
   const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const { setData } = useContext(AppContext);
 
   const pickupRef = useRef(null);
   const dropOffRef = useRef(null);
   const directionsFetched = useRef(false);
+  const navigate = useNavigate();
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: "AIzaSyBEfyuMVyPbaYNEDUXgbEE_SCoNC1y6kaw", // Replace with your API key
@@ -38,11 +52,15 @@ const RequestForm = () => {
       pickupAutocomplete.addListener('place_changed', () => {
         const place = pickupAutocomplete.getPlace();
         setPickupAddress(place.formatted_address || '');
+        setPickupLat(place.geometry?.location?.lat() || '');
+        setPickupLng(place.geometry?.location?.lng() || '');
       });
 
       dropOffAutocomplete.addListener('place_changed', () => {
         const place = dropOffAutocomplete.getPlace();
         setDropOffAddress(place.formatted_address || '');
+        setDropOffLat(place.geometry?.location?.lat() || '');
+        setDropOffLng(place.geometry?.location?.lng() || '');
       });
     }
   };
@@ -64,14 +82,50 @@ const RequestForm = () => {
     }
   };
 
-  const handleSubmit = () => {
-    alert("Request submitted!");
+  const handleSubmit = async () => {
+    const formData = {
+      from_address: pickupAddress,
+      from_latitude: pickupLat,
+      from_longitude: pickupLng,
+      to_address: dropOffAddress,
+      to_latitude: dropOffLat,
+      to_longitude: dropOffLng,
+      item_name: itemName,
+      item_description: itemDescription,
+      recipient_name: recipientName,
+      recipient_phone: recipientPhone,
+      category_id: category,
+    };
+
+    setLoading(true);
+
+    try {
+      const response = await submitRequest(formData);
+      setLoading(false); 
+      setData({ data: response.data }); 
+      navigate('/success'); 
+    } catch (error) {
+      setLoading(false);
+      console.error("Error submitting request:", error);
+      alert("Error submitting request. Please try again."); 
+    }
   };
 
   useEffect(() => {
     if (isLoaded) {
       initAutocomplete();
     }
+
+    const loadCategories = async () => {
+      try {
+        const fetchedCategories = await fetchCategories();
+        setCategories(fetchedCategories);
+      } catch (error) {
+        console.error("Failed to load categories");
+      }
+    };
+
+    loadCategories();
   }, [isLoaded]);
 
   useEffect(() => {
@@ -114,10 +168,10 @@ const RequestForm = () => {
             <FontAwesomeIcon icon={faBox} className="p-3 text-gray-400" />
             <input
               type="text"
-              placeholder="Package Details (size, weight)"
+              placeholder="Item Name"
               required
-              value={packageDetails}
-              onChange={(e) => setPackageDetails(e.target.value)}
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
               className="w-full p-3 focus:outline-none"
             />
           </div>
@@ -125,72 +179,85 @@ const RequestForm = () => {
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faCalendarAlt} className="p-3 text-gray-400" />
             <input
-              type="datetime-local"
+              type="text"
+              placeholder="Item Description"
               required
-              value={deliveryDate}
-              onChange={(e) => setDeliveryDate(e.target.value)}
+              value={itemDescription}
+              onChange={(e) => setItemDescription(e.target.value)}
               className="w-full p-3 focus:outline-none"
             />
           </div>
 
-          <input
-            type="text"
-            placeholder="Sender Name"
-            required
-            value={senderName}
-            onChange={(e) => setSenderName(e.target.value)}
+          <select
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
             className="w-full border border-gray-300 p-3 rounded"
-          />
+            required
+          >
+            <option value="" disabled>Select Category</option>
+            {categories.map((cat) => (
+              <option key={cat.id} value={cat.id}>
+                {cat.name}
+              </option>
+            ))}
+          </select>
 
           <input
             type="text"
-            placeholder="Receiver Name"
+            placeholder="Recipient Name"
             required
-            value={receiverName}
-            onChange={(e) => setReceiverName(e.target.value)}
+            value={recipientName}
+            onChange={(e) => setRecipientName(e.target.value)}
             className="w-full border border-gray-300 p-3 rounded"
           />
 
           <input
             type="tel"
-            placeholder="Receiver Phone"
+            placeholder="Recipient Phone"
             required
-            value={receiverPhone}
-            onChange={(e) => setReceiverPhone(e.target.value)}
+            value={recipientPhone}
+            onChange={(e) => setRecipientPhone(e.target.value)}
             className="w-full border border-gray-300 p-3 rounded"
           />
 
           <button
-            type="button"
-            className="w-full bg-blue-600 text-white py-3 rounded-full hover:bg-blue-700 transition"
+            type="submit"
             onClick={handleSubmit}
+            className={`w-full bg-blue-600 text-white p-3 rounded hover:bg-blue-700 ${loading ? 'opacity-50' : ''}`}
+            disabled={loading}
           >
-            Make Request
+            {loading ? 
+            // show a loading on the page
+            
+            <div className="flex items-center justify-center">
+              <div className="animate-spin rounded-full h-6 w-6 border-t-2 border-white"></div>
+              <span className="ml-2">Submitting Request...</span>
+            </div>
+
+            :
+            // show the button text
+            'Submit Request'
+            }
           </button>
         </form>
       </div>
 
-      <div className="md:w-1/2 lg:w-3/5 h-96 rounded-lg overflow-hidden shadow-lg p-5">
+      <div className="md:w-1/2 lg:w-3/5 h-96" data-aos="fade-left">
         <GoogleMap
-          mapContainerStyle={{ height: '100%', width: '100%', borderRadius: '8px', marginLeft: '16px' }}
-          zoom={10}
-          center={{ lat: -34.397, lng: 150.644 }}
+          center={{ lat: 37.7749, lng: -122.4194 }}
+          zoom={12}
+          mapContainerStyle={{ width: "100%", height: "100%" }}
         >
-          {pickupAddress && dropOffAddress && directionsFetched.current && (
+          {pickupAddress && dropOffAddress && (
             <DirectionsService
-              options={{
-                origin: pickupAddress,
-                destination: dropOffAddress,
-                travelMode: 'DRIVING',
-              }}
+              options={{ origin: pickupAddress, destination: dropOffAddress, travelMode: 'DRIVING' }}
               callback={handleDirectionsCallback}
             />
           )}
           {directions && <DirectionsRenderer directions={directions} />}
         </GoogleMap>
+        {error && <p className="text-red-500 text-center">{error}</p>}
       </div>
-
-      {error && <p className="text-red-500 text-center mt-4">{error}</p>}
     </section>
   );
 };
