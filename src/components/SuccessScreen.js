@@ -17,7 +17,7 @@ const SuccessScreen = () => {
   
   // Extracting relevant data
   const price = data?.data?.data?.cost;
-  const itemName = data?.data?.data?.name; // Assuming you have an item name
+  const itemName = data?.data?.data?.item_name; // Assuming you have an item name
   const fromAddress = data?.data?.data?.from_address;
   const toAddress = data?.data?.data?.to_address;
   const recipientName = data?.data?.data?.recipient_name;
