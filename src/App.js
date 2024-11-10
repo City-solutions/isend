@@ -11,7 +11,7 @@ import Pricing from './components/Pricing';
 import Contact from './components/Contact';
 import SuccessScreen from './components/SuccessScreen';
 import Tracking from './components/Tracking';
-import NotFound from './components/404';  // Importing custom 404 page
+import NotFound from './components/NotFound';  // Importing custom 404 page
 
 export const AppContext = createContext();
 

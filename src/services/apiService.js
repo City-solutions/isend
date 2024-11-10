@@ -38,3 +38,12 @@ export const fetchDeliveryStatus = async (deliveryCode) => {
     throw error;
   }
 };
+export const submitContact = async (formData) => {
+  try {
+    const response = await axios.post(`${API_URL}/contact`, formData);
+    return response.data;
+  } catch (error) {
+    console.error("Error submitting request:", error);
+    throw error;
+  }
+};
