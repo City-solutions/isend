@@ -34,7 +34,7 @@ const Hero = () => {
             Get Started
           </a>
           <a
-            href="https://play.google.com/store"
+            href="https://play.google.com/store/apps/details?id=com.citysolution.isend&pcampaignid=web_share"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-blue-900 py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
