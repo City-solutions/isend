@@ -42,6 +42,13 @@ const Hero = () => {
             <i className="fab fa-google-play text-xl"></i> {/* Replace icon here */}
             <span className="text-sm">Get the App</span>
           </a>
+          {/* Track Progress Button */}
+          <a
+            href="/track"
+            className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-800 transition duration-300 transform hover:scale-105"
+          >
+            Track Progress
+          </a>
         </div>
       </div>
 

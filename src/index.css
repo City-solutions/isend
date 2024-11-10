@@ -482,3 +482,11 @@ footer {
 .animate-shape8 {
   animation: shape8 7s ease-in-out infinite;
 }
+
+.text-dark-blue {
+  color: #1a237e;
+}
+
+.bg-dark-blue {
+  background-color: #1a237e;
+}
