@@ -1,0 +1,159 @@
+{
+  "appName": "iSend",
+  "menu": {
+    "howItWorks": "Comment ça marche",
+    "pricing": "Tarification",
+    "contact": "Contact",
+    "track": "Suivi",
+    "pickupRequest": "Demande de ramassage",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu"
+  },
+  "footer": {
+    "serviceTitle": "Notre service",
+    "serviceDescription": "Nous offrons un service de livraison fiable qui commence par votre demande de ramassage et se termine par une livraison rapide et fiable. Vous pouvez nous faire confiance pour répondre à vos besoins avec efficacité et soin.",
+    "stayConnected": "Restez connecté",
+    "howItWorks": "Comment ça marche",
+    "features": "Caractéristiques",
+    "pricing": "Tarification",
+    "contact": "Contact",
+    "locationsTitle": "Nos emplacements",
+    "locationDetails": "Nord-Ouest, Bamenda, Cameroun",
+    "followUs": "Suivez-nous",
+    "scrollToTop": "Haut de page",
+    "copyright": "Tous droits réservés."
+  },
+  "hero": {
+    "heading": "Livrer la Confiance, Un Colis à la Fois.",
+    "description": "Des services de livraison rapides, fiables et sans accroc. Où que vous soyez, quand vous en avez besoin.",
+    "getStarted": "Commencer",
+    "getApp": "Téléchargez l'App",
+    "trackProgress": "Suivre l'Avancement"
+  },
+  "howItWorks": {
+    "title": "Comment ça marche",
+    "step1": {
+      "title": "1. Demander une collecte",
+      "description": "Décrivez votre colis, et nous nous occupons du reste."
+    },
+    "step2": {
+      "title": "2. Suivi en temps réel",
+      "description": "Suivez votre colis grâce à notre fonction de suivi en direct."
+    },
+    "step3": {
+      "title": "3. Livraison sûre et à temps",
+      "description": "Votre colis arrive en toute sécurité à destination."
+    }
+  },
+  "request_form": {
+    "title": "Demander un enlèvement",
+    "pickup_address": "Adresse de ramassage",
+    "dropoff_address": "Adresse de livraison",
+    "item_name": "Nom de l'article",
+    "item_description": "Description de l'article",
+    "select_category": "Sélectionner une catégorie",
+    "sender_name": "Nom de l'expéditeur",
+    "sender_phone": "Numéro de téléphone de l'expéditeur",
+    "recipient_name": "Nom du destinataire",
+    "recipient_phone": "Numéro de téléphone du destinataire",
+    "make_request": "Faire une demande",
+    "loading": "Chargement...",
+    "error_loading_maps": "Erreur de chargement de Google Maps",
+    "fetch_error": "Erreur de récupération des directions. Veuillez réessayer."
+  },
+  "payment": {
+    "mobileMoney": "Paiement Mobile Money",
+    "enterDetails": "Entrez les détails de votre Mobile Money:",
+    "phoneNumber": "Numéro de téléphone",
+    "confirmPayment": "Confirmer le paiement MoMo",
+    "cardPayment": "Paiement par carte",
+    "enterCardDetails": "Entrez les détails de votre carte:",
+    "cardNumber": "Numéro de carte",
+    "expiryDate": "Date d'expiration (MM/AA)",
+    "cvv": "CVV",
+    "confirmCardPayment": "Confirmer le paiement par carte"
+  },
+  "common": {
+    "cancel": "Annuler"
+  },
+  "pricing": {
+    "title": "Plans de Tarification",
+    "perDelivery": {
+      "title": "Par Livraison",
+      "description": "Payez par livraison en fonction de la distance.",
+      "cta": "Choisir le plan"
+    },
+    "monthlySubscription": {
+      "title": "Abonnement Mensuel",
+      "description": "Livraisons illimitées pour un prix mensuel fixe.",
+      "cta": "Choisir le plan"
+    },
+    "premiumPackage": {
+      "title": "Forfait Premium",
+      "description": "Livraisons prioritaires et fonctionnalités supplémentaires.",
+      "cta": "Choisir le plan"
+    }
+  },
+  "success_screen": {
+    "title": "Demande soumise avec succès !",
+    "note": "Remarque : Votre code de livraison est encore en cours de traitement. Revenez plus tard.",
+    "item": "Article",
+    "delivery_code": "Code de Livraison",
+    "amount": "Montant",
+    "from": "De",
+    "to": "À",
+    "recipient": "Destinataire",
+    "total_cost": "Coût Total",
+    "payment_method": "Choisissez une méthode de paiement :",
+    "download_receipt": "Télécharger le reçu"
+  },
+  "payment_methods": {
+    "Mobile Money": "Argent Mobile",
+    "Credit Card": "Carte de Crédit"
+  },
+  "tracking": {
+    "track_your_delivery": "Suivez Votre Livraison",
+    "enter_code_prompt": "Entrez votre code de livraison pour vérifier l'état actuel de votre colis.",
+    "enter_code_error": "Veuillez entrer un code de livraison.",
+    "fetch_error": "Impossible de récupérer le statut de la livraison. Veuillez réessayer.",
+    "enter_delivery_code": "Entrez le code de livraison",
+    "check_progress": "Vérifier l'avancement",
+    "delivery_information": "Informations sur la livraison",
+    "delivery_code": "Code de livraison",
+    "recipient_name": "Nom du destinataire",
+    "item_description": "Description de l'article",
+    "cost": "Coût",
+    "from_address": "Adresse d'origine",
+    "to_address": "Adresse de destination",
+    "status": "Statut",
+    "important_notes": "Notes importantes sur la livraison",
+    "important_note_message": "Veuillez noter que le statut de la livraison est mis à jour en temps réel. Cependant, les délais de livraison peuvent être soumis à des facteurs externes tels que les conditions météorologiques, le trafic et les retards imprévus. Pour toute demande urgente ou question, veuillez contacter notre équipe d'assistance.",
+    "note_1": "Assurez-vous que le destinataire soit disponible à l'adresse de livraison pendant l'heure de livraison estimée.",
+    "note_2": "Si le statut de la livraison indique 'En cours de livraison', cela signifie que le colis est en route et sera livré sous peu.",
+    "note_3": "Si 'Échec de la tentative de livraison' est affiché, une deuxième tentative sera effectuée dans les 48 heures. Veuillez vérifier les détails de votre adresse.",
+    "note_4": "Pour plus d'informations, visitez notre page FAQ ou contactez notre support client."
+  },
+  "404": {
+    "title": "Oups! Page Non Trouvée",
+    "message": "Désolé, la page que vous recherchez n'existe pas. Elle a peut-être été supprimée ou déplacée vers une autre URL.",
+    "button": "Retour à l'accueil"
+  },
+  "contact": {
+    "title": "Contactez-nous",
+    "description": "Contactez-nous pour toute question, assistance ou retour. Nous sommes là pour vous aider.",
+    "emailTitle": "Envoyez-nous un e-mail",
+    "email": "team.cleancity@gmail.com",
+    "phoneTitle": "Appelez-nous",
+    "phone": "+237 681610898",
+    "addressTitle": "Visitez-nous",
+    "address": "UP Station, Bamenda, Cameroun",
+    "name": "Votre Nom",
+    "emailLabel": "Adresse E-mail",
+    "message": "Message",
+    "button": "Envoyer le message",
+    "statusSuccess": "Message envoyé avec succès !",
+    "statusFailure": "Échec de l'envoi du message. Veuillez réessayer plus tard.",
+    "statusError": "Erreur d'envoi du message.",
+    "statusMessageSubmitted": "Message soumis"
+  }
+}

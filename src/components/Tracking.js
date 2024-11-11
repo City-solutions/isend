@@ -2,8 +2,10 @@ import React, { useState } from 'react';
 import { fetchDeliveryStatus } from '../services/apiService';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner, faSearch, faBarcode, faExclamationCircle, faCheckCircle, faTruck } from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
 const Tracking = () => {
+    const { t } = useTranslation();
     const [deliveryCode, setDeliveryCode] = useState('');
     const [deliveryStatus, setDeliveryStatus] = useState(null);
     const [loading, setLoading] = useState(false);
@@ -11,7 +13,7 @@ const Tracking = () => {
 
     const handleTrackStatus = async () => {
         if (!deliveryCode) {
-            setError('Please enter a delivery code.');
+            setError(t('tracking.enter_code_error'));
             return;
         }
 
@@ -23,7 +25,7 @@ const Tracking = () => {
             const status = await fetchDeliveryStatus(deliveryCode);
             setDeliveryStatus(status);
         } catch (err) {
-            setError('Unable to fetch delivery status. Please try again.');
+            setError(t('tracking.fetch_error'));
         } finally {
             setLoading(false);
         }
@@ -31,12 +33,13 @@ const Tracking = () => {
 
     return (
         <div className="tracking-container mx-auto max-w-full p-8 bg-white rounded-lg shadow-lg border border-dark-blue min-h-[450px]">
-            <div className="bg-gradient-to-r from-[#1f237e] via-[#1a032e] to-[#0a237e] text-white p-8 rounded-t-lg shadow-lg mb-6 p-12">                <h2 className="text-3xl font-semibold text-center mb-4">
-                <FontAwesomeIcon icon={faTruck} className="mr-2" />
-                Track Your Delivery
-            </h2>
+            <div className="bg-gradient-to-r from-[#1f237e] via-[#1a032e] to-[#0a237e] text-white p-8 rounded-t-lg shadow-lg mb-6 p-12">
+                <h2 className="text-3xl font-semibold text-center mb-4">
+                    <FontAwesomeIcon icon={faTruck} className="mr-2" />
+                    {t('tracking.track_your_delivery')}
+                </h2>
                 <p className="text-lg text-center mb-6">
-                    Enter your delivery code to check the current status of your package.
+                    {t('tracking.enter_code_prompt')}
                 </p>
             </div>
 
@@ -47,7 +50,7 @@ const Tracking = () => {
                         type="text"
                         value={deliveryCode}
                         onChange={(e) => setDeliveryCode(e.target.value)}
-                        placeholder="Enter Delivery Code"
+                        placeholder={t('tracking.enter_delivery_code')}
                         className="border border-dark-blue rounded-l-md pl-10 pr-3 py-3 focus:border-blue-800 focus:outline-none w-full"
                     />
                 </div>
@@ -57,7 +60,7 @@ const Tracking = () => {
                     className="bg-dark-blue text-white font-semibold p-3 rounded-md hover:bg-blue-800 transition-all duration-300 w-full sm:w-auto"
                 >
                     <FontAwesomeIcon icon={faSearch} className="mr-2" />
-                    Check Progress
+                    {t('tracking.check_progress')}
                 </button>
             </div>
 
@@ -78,20 +81,20 @@ const Tracking = () => {
                 <div className="mt-6">
                     <h3 className="text-xl font-semibold text-dark-blue mb-4">
                         <FontAwesomeIcon icon={faCheckCircle} className="mr-2" />
-                        Delivery Information:
+                        {t('tracking.delivery_information')}
                     </h3>
 
                     <div className="overflow-x-auto">
                         <table className="min-w-full bg-blue-50 border border-blue-300 table-auto">
                             <thead>
                                 <tr className="text-left bg-dark-blue text-white">
-                                    <th className="border px-4 py-2">Delivery Code</th>
-                                    <th className="border px-4 py-2">Recipient Name</th>
-                                    <th className="border px-4 py-2">Item Description</th>
-                                    <th className="border px-4 py-2">Cost</th>
-                                    <th className="border px-4 py-2">From Address</th>
-                                    <th className="border px-4 py-2">To Address</th>
-                                    <th className="border px-4 py-2">Status</th>
+                                    <th className="border px-4 py-2">{t('tracking.delivery_code')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.recipient_name')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.item_description')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.cost')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.from_address')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.to_address')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.status')}</th>
                                 </tr>
                             </thead>
 
@@ -112,17 +115,17 @@ const Tracking = () => {
                     <div className="mt-6 p-4 bg-blue-100 border border-blue-300 rounded-lg">
                         <h4 className="text-lg font-semibold text-dark-blue mb-2">
                             <FontAwesomeIcon icon={faExclamationCircle} className="mr-2" />
-                            Important Delivery Notes:
+                            {t('tracking.important_notes')}
                         </h4>
                         <div className="note-typing">
                             <p className="text-sm text-dark-blue">
-                                Please note that the delivery status is updated in real-time. However, the delivery times might be subject to external factors such as weather conditions, traffic, and unforeseen delays. For any urgent requests or inquiries, please contact our support team directly.
+                                {t('tracking.important_note_message')}
                             </p>
                             <ul className="mt-4 list-disc pl-5 text-sm text-dark-blue">
-                                <li>Ensure the recipient is available at the delivery address during the estimated delivery time.</li>
-                                <li>If the delivery status shows as "Out for Delivery," it means the package is on its way and will be delivered soon.</li>
-                                <li>If "Delivery Attempt Failed" is displayed, a second attempt will be made within the next 48 hours. Please check your address details.</li>
-                                <li>For more information, visit our <a href="/faq" className="text-blue-600 hover:underline">FAQ page</a> or contact customer support.</li>
+                                <li>{t('tracking.note_1')}</li>
+                                <li>{t('tracking.note_2')}</li>
+                                <li>{t('tracking.note_3')}</li>
+                                <li>{t('tracking.note_4')}</li>
                             </ul>
                         </div>
                     </div>

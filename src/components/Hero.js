@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Hero = () => {
+  const { t } = useTranslation();
   const [displayText, setDisplayText] = useState('');
-  const fullText = "Delivering Trust, One Package at a Time.";
+  const fullText = t('hero.heading');
   const typingSpeed = 100; // Speed of typing effect in milliseconds
 
   useEffect(() => {
@@ -15,7 +17,7 @@ const Hero = () => {
     }, typingSpeed);
 
     return () => clearInterval(typingEffect);
-  }, [displayText]);
+  }, [displayText, fullText]);
 
   return (
     <section className="hero bg-gradient-to-r from-blue-500 to-blue-900 text-white py-20 px-6 md:px-12 relative overflow-hidden">
@@ -24,14 +26,14 @@ const Hero = () => {
           {displayText}
         </h2>
         <p className="text-lg md:text-xl mb-6">
-          Fast, reliable, and seamless delivery services. Wherever you are, whenever you need.
+          {t('hero.description')}
         </p>
         <div className="flex flex-col md:flex-row items-center justify-center gap-4">
           <a
             href="#request-form"
             className="bg-white text-blue-700 font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-gray-200 transition duration-300 transform hover:scale-105"
           >
-            Get Started
+            {t('hero.getStarted')}
           </a>
           <a
             href="https://play.google.com/store/apps/details?id=com.citysolution.isend&pcampaignid=web_share"
@@ -39,23 +41,20 @@ const Hero = () => {
             rel="noopener noreferrer"
             className="flex items-center gap-2 bg-blue-900 py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
           >
-            <i className="fab fa-google-play text-xl"></i> {/* Replace icon here */}
-            <span className="text-sm">Get the App</span>
+            <i className="fab fa-google-play text-xl"></i>
+            <span className="text-sm">{t('hero.getApp')}</span>
           </a>
-          {/* Track Progress Button */}
           <a
             href="/track"
             className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-800 transition duration-300 transform hover:scale-105"
           >
-            Track Progress
+            {t('hero.trackProgress')}
           </a>
         </div>
       </div>
 
-      {/* Background Element for Extra Depth */}
       <div className="absolute inset-0 z-0 bg-blue-800 opacity-30 rounded-lg transform scale-110 animate-pulse"></div>
 
-      {/* Additional Decorative Shapes with Different Animations */}
       <div className="hidden md:block absolute right-0 bottom-0 w-1/4 h-1/4 bg-blue-600 rounded-full opacity-30 animate-spin"></div>
       <div className="hidden md:block absolute left-0 top-0 w-1/5 h-1/5 bg-blue-500 rounded-full opacity-20 animate-swing"></div>
       <div className="hidden md:block absolute top-1/4 left-1/4 w-1/6 h-1/6 bg-blue-700 rounded-full opacity-25 animate-pulse"></div>
@@ -64,7 +63,6 @@ const Hero = () => {
       <div className="hidden md:block absolute top-0 right-1/4 w-1/4 h-1/4 bg-blue-500 rounded-full opacity-10 animate-flip delay-100"></div>
       <div className="hidden md:block absolute bottom-0 left-1/4 w-1/6 h-1/6 bg-blue-400 rounded-full opacity-25 animate-shake delay-400"></div>
 
-      {/* Mobile Shapes */}
       <div className="block md:hidden absolute right-0 bottom-0 w-1/4 h-1/4 bg-blue-600 rounded-full opacity-30 animate-spin"></div>
       <div className="block md:hidden absolute left-0 top-0 w-1/5 h-1/5 bg-blue-500 rounded-full opacity-20 animate-swing"></div>
       <div className="block md:hidden absolute top-1/4 left-1/4 w-1/6 h-1/6 bg-blue-700 rounded-full opacity-25 animate-pulse"></div>

@@ -12,6 +12,7 @@ import Contact from './components/Contact';
 import SuccessScreen from './components/SuccessScreen';
 import Tracking from './components/Tracking';
 import NotFound from './components/NotFound';  // Importing custom 404 page
+import './i18n'
 
 export const AppContext = createContext();
 

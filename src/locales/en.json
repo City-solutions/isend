@@ -1,0 +1,160 @@
+{
+  "appName": "iSend",
+  "menu": {
+    "howItWorks": "How It Works",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "track": "Track",
+    "pickupRequest": "Pickup Request",
+    "openMenu": "Open Menu",
+    "closeMenu": "Close Menu"
+  },
+  "footer": {
+    "serviceTitle": "Our Service",
+    "serviceDescription": "We provide a dependable delivery service that begins with your pickup request and culminates in fast, reliable delivery. You can trust us to handle your needs with efficiency and care.",
+    "stayConnected": "Stay Connected",
+    "howItWorks": "How It Works",
+    "features": "Features",
+    "pricing": "Pricing",
+    "contact": "Contact",
+    "locationsTitle": "Our Locations",
+    "locationDetails": "Northwest, Bamenda, Cameroon",
+    "followUs": "Follow Us",
+    "scrollToTop": "Scroll to Top",
+    "copyright": "All rights reserved."
+  },
+  "hero": {
+    "heading": "Delivering Trust, One Package at a Time.",
+    "description": "Fast, reliable, and seamless delivery services. Wherever you are, whenever you need.",
+    "getStarted": "Get Started",
+    "getApp": "Get the App",
+    "trackProgress": "Track Progress"
+  },
+  "howItWorks": {
+    "title": "How It Works",
+    "step1": {
+      "title": "1. Request a Pickup",
+      "description": "Describe your package, and we'll handle the rest."
+    },
+    "step2": {
+      "title": "2. Track in Real-Time",
+      "description": "Follow your package with our live tracking feature."
+    },
+    "step3": {
+      "title": "3. Safe & On-Time Delivery",
+      "description": "Your package arrives safely at its destination."
+    }
+  },
+  "request_form": {
+    "title": "Request a Pickup",
+    "pickup_address": "Pickup Address",
+    "dropoff_address": "Drop-off Address",
+    "item_name": "Item Name",
+    "item_description": "Item Description",
+    "select_category": "Select Category",
+    "sender_name": "Sender Name",
+    "sender_phone": "Sender Phone",
+    "recipient_name": "Recipient Name",
+    "recipient_phone": "Recipient Phone",
+    "make_request": "Make Request",
+    "loading": "Loading...",
+    "error_loading_maps": "Error loading Google Maps",
+    "fetch_error": "Error fetching directions. Please try again."
+  },
+  "payment": {
+    "mobileMoney": "Mobile Money Payment",
+    "enterDetails": "Enter your Mobile Money details:",
+    "phoneNumber": "Phone Number",
+    "confirmPayment": "Confirm MoMo Payment",
+    "cardPayment": "Card Payment",
+    "enterCardDetails": "Enter your card details:",
+    "cardNumber": "Card Number",
+    "expiryDate": "Expiry Date (MM/YY)",
+    "cvv": "CVV",
+    "confirmCardPayment": "Confirm Card Payment"
+  },
+  "common": {
+    "cancel": "Cancel"
+  },
+  "pricing": {
+    "title": "Pricing Plans",
+    "perDelivery": {
+      "title": "Per Delivery",
+      "description": "Pay per delivery based on distance.",
+      "cta": "Choose Plan"
+    },
+    "monthlySubscription": {
+      "title": "Monthly Subscription",
+      "description": "Unlimited deliveries for a fixed monthly price.",
+      "cta": "Choose Plan"
+    },
+    "premiumPackage": {
+      "title": "Premium Package",
+      "description": "Priority deliveries and additional features.",
+      "cta": "Choose Plan"
+    }
+  },
+  "success_screen": {
+    "title": "Request Submitted Successfully!",
+    "note": "Note: Your delivery code is still processing. Check back later.",
+    "item": "Item",
+    "delivery_code": "Delivery Code",
+    "amount": "Amount",
+    "from": "From",
+    "to": "To",
+    "recipient": "Recipient",
+    "total_cost": "Total Cost",
+    "payment_method": "Choose a payment method:",
+    "download_receipt": "Download Receipt"
+  },
+  "payment_methods": {
+    "Mobile Money": "Mobile Money",
+    "Credit Card": "Credit Card"
+  },
+  "tracking": {
+    "track_your_delivery": "Track Your Delivery",
+    "enter_code_prompt": "Enter your delivery code to check the current status of your package.",
+    "enter_code_error": "Please enter a delivery code.",
+    "fetch_error": "Unable to fetch delivery status. Please try again.",
+    "enter_delivery_code": "Enter Delivery Code",
+    "check_progress": "Check Progress",
+    "delivery_information": "Delivery Information",
+    "delivery_code": "Delivery Code",
+    "recipient_name": "Recipient Name",
+    "item_description": "Item Description",
+    "cost": "Cost",
+    "from_address": "From Address",
+    "to_address": "To Address",
+    "status": "Status",
+    "important_notes": "Important Delivery Notes",
+    "important_note_message": "Please note that the delivery status is updated in real-time. However, the delivery times might be subject to external factors such as weather conditions, traffic, and unforeseen delays. For any urgent requests or inquiries, please contact our support team directly.",
+    "note_1": "Ensure the recipient is available at the delivery address during the estimated delivery time.",
+    "note_2": "If the delivery status shows as 'Out for Delivery,' it means the package is on its way and will be delivered soon.",
+    "note_3": "If 'Delivery Attempt Failed' is displayed, a second attempt will be made within the next 48 hours. Please check your address details.",
+    "note_4": "For more information, visit our FAQ page or contact customer support."
+  },
+  "404": {
+    "title": "Oops! Page Not Found",
+    "message": "Sorry, the page you are looking for does not exist. It might have been removed or moved to a different URL.",
+    "button": "Go to Home"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for any inquiries, support, or feedback. We’re here to help you.",
+    "emailTitle": "Email Us",
+    "email": "team.cleancity@gmail.com",
+    "phoneTitle": "Call Us",
+    "phone": "+237 681610898",
+    "addressTitle": "Visit Us",
+    "address": "UP Station, Bamenda, Cameroon",
+    "name": "Your Name",
+    "emailLabel": "Email Address",
+    "message": "Message",
+    "button": "Send Message",
+    "statusSuccess": "Message sent successfully!",
+    "statusFailure": "Failed to send message. Please try again later.",
+    "statusError": "Error sending message.",
+    "statusMessageSubmitted": "Message Submitted"
+  }
+}
+

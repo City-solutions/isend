@@ -2,19 +2,22 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { submitContact } from '../services/apiService';
+import { useTranslation } from 'react-i18next'; // Import i18n hook
 
 const Contact = () => {
+  const { t } = useTranslation(); // Access translation function
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: ''
   });
-  
+
   const [status, setStatus] = useState(null);
   const [loading, setLoading] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [showCheck, setShowCheck] = useState(false);
-  
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData(prevState => ({
@@ -31,18 +34,18 @@ const Contact = () => {
       const response = await submitContact(formData);
       if (response.success) {
         setIsSuccess(true);
-        setStatus('Message sent successfully!');
+        setStatus(t('contact.statusSuccess'));
         setFormData({ name: '', email: '', message: '' });
       } else {
         setIsSuccess(false);
-        setStatus('Failed to send message. Please try again later.');
+        setStatus(t('contact.statusFailure'));
       }
     } catch (error) {
       setIsSuccess(false);
-      setStatus('Error sending message.');
+      setStatus(t('contact.statusError'));
     }
     setLoading(false);
-    
+
     // Show checkmark after submission and hide it after 3 seconds
     setShowCheck(true);
     setTimeout(() => {
@@ -60,37 +63,37 @@ const Contact = () => {
 
       <div className={`container mx-auto relative z-10 ${loading ? 'pointer-events-none' : ''}`}>
         <h2 className="text-4xl md:text-5xl font-bold mb-8 text-gray-800 text-center" data-aos="fade-left">
-          Contact Us
+          {t('contact.title')}
         </h2>
         <p className="text-lg text-gray-600 mb-12 max-w-xl mx-auto text-center" data-aos="fade-up">
-          Get in touch with us for any inquiries, support, or feedback. We’re here to help you.
+          {t('contact.description')}
         </p>
 
         <div className="flex flex-wrap lg:flex-nowrap gap-12">
           <div className="flex flex-col gap-6 w-full lg:w-1/2">
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-right">
               <FontAwesomeIcon icon={faEnvelope} className="text-blue-500 text-4xl mb-4 animate-bounce" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Email Us</h3>
-              <p className="text-gray-600">team.cleancity@gmail.com</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{t('contact.emailTitle')}</h3>
+              <p className="text-gray-600">{t('contact.email')}</p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-right">
               <FontAwesomeIcon icon={faPhone} className="text-green-500 text-4xl mb-4 animate-pulse" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Call Us</h3>
-              <p className="text-gray-600">+237 681610898</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{t('contact.phoneTitle')}</h3>
+              <p className="text-gray-600">{t('contact.phone')}</p>
             </div>
 
             <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300" data-aos="fade-right">
               <FontAwesomeIcon icon={faMapMarkerAlt} className="text-red-500 text-4xl mb-4 animate-bounce" />
-              <h3 className="text-xl font-semibold text-gray-800 mb-2">Visit Us</h3>
-              <p className="text-gray-600">UP Station, Bamenda, Cameroon</p>
+              <h3 className="text-xl font-semibold text-gray-800 mb-2">{t('contact.addressTitle')}</h3>
+              <p className="text-gray-600">{t('contact.address')}</p>
             </div>
           </div>
 
           <div className="w-full lg:w-1/2 bg-white p-6 rounded-lg shadow-lg hover:shadow-xl transform hover:scale-105 transition-transform duration-300">
             <form className="space-y-6" data-aos="fade-left" onSubmit={handleSubmit}>
               <div className="flex flex-col space-y-2">
-                <label className="text-gray-700 font-semibold" htmlFor="name">Your Name</label>
+                <label className="text-gray-700 font-semibold" htmlFor="name">{t('contact.name')}</label>
                 <input 
                   type="text" 
                   id="name" 
@@ -102,7 +105,7 @@ const Contact = () => {
                 />
               </div>
               <div className="flex flex-col space-y-2">
-                <label className="text-gray-700 font-semibold" htmlFor="email">Email Address</label>
+                <label className="text-gray-700 font-semibold" htmlFor="email">{t('contact.emailLabel')}</label>
                 <input 
                   type="email" 
                   id="email" 
@@ -114,7 +117,7 @@ const Contact = () => {
                 />
               </div>
               <div className="flex flex-col space-y-2">
-                <label className="text-gray-700 font-semibold" htmlFor="message">Message</label>
+                <label className="text-gray-700 font-semibold" htmlFor="message">{t('contact.message')}</label>
                 <textarea 
                   id="message" 
                   name="message" 
@@ -129,7 +132,7 @@ const Contact = () => {
                 type="submit" 
                 className="w-full py-3 bg-blue-500 text-white font-bold rounded-lg shadow hover:bg-blue-600 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
               >
-                Send Message
+                {t('contact.button')}
               </button>
             </form>
 
@@ -137,26 +140,17 @@ const Contact = () => {
               <div className="mt-4 text-center text-lg text-gray-800">
                 {isSuccess ? (
                   <div className="flex items-center justify-center space-x-2">
-                    {showCheck && <FontAwesomeIcon icon={faCheckCircle} className="text-green-500 text-3xl" />}
-                    {showCheck && <span>Message Submitted</span>}
+                    {showCheck && <FontAwesomeIcon icon={faCheckCircle} className="text-green-500" />}
+                    <p>{status}</p>
                   </div>
                 ) : (
-                  <p>{status}</p>
+                  <p className="text-red-500">{status}</p>
                 )}
               </div>
             )}
           </div>
         </div>
       </div>
-
-      {loading && (
-        <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center z-20">
-          <div className="text-white text-3xl font-bold">
-            <div className="loader"></div>
-            Loading...
-          </div>
-        </div>
-      )}
     </section>
   );
 };

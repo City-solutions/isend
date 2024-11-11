@@ -5,10 +5,12 @@ import { faMapMarkerAlt, faBox, faCalendarAlt, faImage, faSpinner } from '@forta
 import { fetchCategories, submitRequest } from '../services/apiService';
 import { useNavigate } from 'react-router-dom';
 import { AppContext } from '../App';
+import { useTranslation } from 'react-i18next';
 
 const libraries = ["places", "directions"];
 
 const RequestForm = () => {
+  const { t } = useTranslation(); // i18next hook for translation
   const [pickupAddress, setPickupAddress] = useState('');
   const [pickupLat, setPickupLat] = useState('');
   const [pickupLng, setPickupLng] = useState('');
@@ -83,7 +85,7 @@ const RequestForm = () => {
     if (status === 'OK') {
       setDirections(response);
     } else {
-      setError('Error fetching directions. Please try again.');
+      setError(t('request_form.fetch_error'));
       directionsFetched.current = false;
     }
   };
@@ -124,7 +126,7 @@ const RequestForm = () => {
     } catch (error) {
       setLoading(false);
       console.error("Error submitting request:", error);
-      alert("Error submitting request. Please try again.");
+      alert(t('request_form.fetch_error'));
     }
   };
 
@@ -151,58 +153,94 @@ const RequestForm = () => {
     }
   }, [pickupAddress, dropOffAddress]);
 
-  if (!isLoaded) return <div>Loading...</div>;
-  if (loadError) return <div>Error loading Google Maps</div>;
+  if (!isLoaded) return <div>{t('request_form.loading')}</div>;
+  if (loadError) return <div>{t('request_form.error_loading_maps')}</div>;
 
   return (
     <section id="request-form" className="flex flex-col md:flex-row py-10 px-6 md:px-20 bg-white space-x-4">
       <div className="md:w-1/2 lg:w-2/5 mb-8 md:mb-0" data-aos="fade-right">
-        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">Request a Pickup</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">{t('request_form.title')}</h2>
         <form className="space-y-6 w-11/12 mx-auto" onSubmit={(e) => e.preventDefault()}>
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
-            <input ref={pickupRef} type="text" placeholder="Pickup Address" required className="w-full p-3 focus:outline-none" />
+            <input ref={pickupRef} type="text" placeholder={t('request_form.pickup_address')} required className="w-full p-3 focus:outline-none" />
           </div>
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
-            <input ref={dropOffRef} type="text" placeholder="Drop-off Address" required className="w-full p-3 focus:outline-none" />
+            <input ref={dropOffRef} type="text" placeholder={t('request_form.dropoff_address')} required className="w-full p-3 focus:outline-none" />
           </div>
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faBox} className="p-3 text-gray-400" />
-            <input type="text" placeholder="Item Name" required value={itemName} onChange={(e) => setItemName(e.target.value)} className="w-full p-3 focus:outline-none" />
+            <input value={itemName} onChange={(e) => setItemName(e.target.value)} type="text" placeholder={t('request_form.item_name')} required className="w-full p-3 focus:outline-none" />
+          </div>
+          <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
+            <FontAwesomeIcon icon={faBox} className="p-3 text-gray-400" />
+            <textarea value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} placeholder={t('request_form.item_description')} required className="w-full p-3 focus:outline-none" rows="4"></textarea>
           </div>
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faCalendarAlt} className="p-3 text-gray-400" />
-            <input type="text" placeholder="Item Description" required value={itemDescription} onChange={(e) => setItemDescription(e.target.value)} className="w-full p-3 focus:outline-none" />
+            <input type="date" value={deliveryDate} onChange={(e) => setDeliveryDate(e.target.value)} className="w-full p-3 focus:outline-none" />
           </div>
-          <select value={category} onChange={(e) => setCategory(e.target.value)} className="w-full border border-gray-300 p-3 rounded" required>
-            <option value="" disabled>Select Category</option>
-            {categories.map((cat) => (
-              <option key={cat.id} value={cat.id}>{cat.name}</option>
-            ))}
-          </select>
           <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
             <FontAwesomeIcon icon={faImage} className="p-3 text-gray-400" />
-            <input type="file" accept="image/*" onChange={handleImageChange} className="w-full p-3 focus:outline-none" />
+            <input type="file" onChange={handleImageChange} className="w-full p-3 focus:outline-none" />
           </div>
-          <input type="text" placeholder="Sender Name" required value={senderName} onChange={(e) => setSenderName(e.target.value)} className="w-full border border-gray-300 p-3 rounded" />
-          <input type="tel" placeholder="Sender Phone" required value={senderPhone} onChange={(e) => setSenderPhone(e.target.value)} className="w-full border border-gray-300 p-3 rounded" />
-          <input type="text" placeholder="Recipient Name" required value={recipientName} onChange={(e) => setRecipientName(e.target.value)} className="w-full border border-gray-300 p-3 rounded" />
-          <input type="tel" placeholder="Recipient Phone" required value={recipientPhone} onChange={(e) => setRecipientPhone(e.target.value)} className="w-full border border-gray-300 p-3 rounded" />
-          <button onClick={handleSubmit} disabled={loading} className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 focus:outline-none">
-            {loading ? <FontAwesomeIcon icon={faSpinner} spin /> : 'Make Request'}
-          </button>
+          <div className="flex flex-col space-y-4">
+            <div className="border border-gray-300 rounded p-3">
+              <label className="block text-gray-800 mb-2">{t('request_form.select_category')}</label>
+              <select value={category} onChange={(e) => setCategory(e.target.value)} required className="w-full p-3 focus:outline-none">
+                <option value="">{t('request_form.select_category')}</option>
+                {categories.map((cat) => (
+                  <option key={cat.id} value={cat.id}>{cat.name}</option>
+                ))}
+              </select>
+            </div>
+          </div>
+          <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
+            <input type="text" value={senderName} onChange={(e) => setSenderName(e.target.value)} placeholder={t('request_form.sender_name')} required className="w-full p-3 focus:outline-none" />
+          </div>
+          <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
+            <input type="text" value={senderPhone} onChange={(e) => setSenderPhone(e.target.value)} placeholder={t('request_form.sender_phone')} required className="w-full p-3 focus:outline-none" />
+          </div>
+          <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
+            <input type="text" value={recipientName} onChange={(e) => setRecipientName(e.target.value)} placeholder={t('request_form.recipient_name')} required className="w-full p-3 focus:outline-none" />
+          </div>
+          <div className="flex items-center border border-gray-300 rounded focus-within:ring-2 focus-within:ring-blue-600">
+            <FontAwesomeIcon icon={faMapMarkerAlt} className="p-3 text-gray-400" />
+            <input type="text" value={recipientPhone} onChange={(e) => setRecipientPhone(e.target.value)} placeholder={t('request_form.recipient_phone')} required className="w-full p-3 focus:outline-none" />
+          </div>
+          <div className="w-full mt-6">
+            <button onClick={handleSubmit} className="w-full py-3 px-6 bg-blue-600 text-white font-bold rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-600">{t('request_form.make_request')}</button>
+          </div>
         </form>
       </div>
-      <div className="md:w-1/2 lg:w-3/5" data-aos="fade-left">
-        <GoogleMap mapContainerStyle={{ width: '100%', height: '100%' }} center={{ lat: 5.950, lng: 10.159 }} zoom={10}>
-          {pickupAddress && dropOffAddress && directions && (
-            <DirectionsRenderer directions={directions} />
+      <div className="md:w-1/2 lg:w-3/5 flex justify-center items-center" data-aos="fade-left">
+        <GoogleMap
+          center={{ lat: 4.0518, lng: 9.7072 }}
+          zoom={13}
+          mapContainerClassName="w-full h-96"
+        >
+          {pickupLat && dropOffLat && (
+            <>
+              <DirectionsService
+                options={{
+                  destination: { lat: dropOffLat, lng: dropOffLng },
+                  origin: { lat: pickupLat, lng: pickupLng },
+                  travelMode: 'DRIVING',
+                }}
+                callback={handleDirectionsCallback}
+              />
+              {directions && (
+                <DirectionsRenderer
+                  directions={directions}
+                  options={{ preserveViewport: true }}
+                />
+              )}
+            </>
           )}
-          <DirectionsService
-            options={{ origin: pickupAddress, destination: dropOffAddress, travelMode: 'DRIVING' }}
-            callback={(response, status) => handleDirectionsCallback(response, status)}
-          />
         </GoogleMap>
       </div>
     </section>
