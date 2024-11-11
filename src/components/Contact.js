@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faPhone, faMapMarkerAlt, faCheckCircle } from '@fortawesome/free-solid-svg-icons';
 import { submitContact } from '../services/apiService';
-import { useTranslation } from 'react-i18next'; // Import i18n hook
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
-  const { t } = useTranslation(); // Access translation function
+  const { t } = useTranslation();
 
   const [formData, setFormData] = useState({
     name: '',
@@ -20,7 +20,7 @@ const Contact = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value
     }));
@@ -46,15 +46,34 @@ const Contact = () => {
     }
     setLoading(false);
 
-    // Show checkmark after submission and hide it after 3 seconds
     setShowCheck(true);
     setTimeout(() => {
       setShowCheck(false);
-    }, 3000); // Check disappears after 3 seconds
+    }, 3000);
   };
 
   return (
     <section id="contact" className="relative py-20 bg-gradient-to-b from-gray-100 to-gray-300">
+      {loading && (
+        <div className="fixed inset-0 bg-gray-800 bg-opacity-50 z-50 flex items-center justify-center">
+          <div className="loader ease-linear rounded-full border-4 border-t-4 border-gray-200 h-12 w-12"></div>
+          <style jsx>{`
+            .loader {
+              border-top-color: #3498db;
+              animation: spin 1s linear infinite;
+            }
+            @keyframes spin {
+              0% {
+                transform: rotate(0deg);
+              }
+              100% {
+                transform: rotate(360deg);
+              }
+            }
+          `}</style>
+        </div>
+      )}
+
       <div className={`absolute inset-0 z-0 overflow-hidden ${loading ? 'blur-sm' : ''}`}>
         <div className="bg-blue-300 rounded-full w-64 h-64 absolute top-10 left-20 animate-moveShape1 opacity-30"></div>
         <div className="bg-purple-400 rounded-full w-80 h-80 absolute bottom-20 right-10 animate-moveShape2 opacity-40"></div>
