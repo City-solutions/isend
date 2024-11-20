@@ -62,18 +62,26 @@
     "fetch_error": "Error fetching directions. Please try again."
   },
   "payment": {
-    "mobileMoney": "Mobile Money Payment",
     "enterDetails": "Enter your Mobile Money details:",
     "phoneNumber": "Phone Number",
-    "confirmPayment": "Confirm MoMo Payment",
     "cardPayment": "Card Payment",
     "enterCardDetails": "Enter your card details:",
     "cardNumber": "Card Number",
     "expiryDate": "Expiry Date (MM/YY)",
     "cvv": "CVV",
-    "confirmCardPayment": "Confirm Card Payment"
+    "confirmCardPayment": "Confirm Card Payment",
+    "paymentMethod": "Payment Method",
+    "paymentStatus": "Payment Status",
+    "success": "Payment Successful",
+    "error": "Payment failed. Please try again.",
+    "pollingMessage": "Please wait while we process your payment.",
+    "dialMessage": "Dial *126# to complete the payment.",
+    "mobileMoney": "Mobile Money Payment",
+    "confirmPayment": "Confirm Payment",
+    "statusError": "Could not retrieve payment status. Please try again."
   },
   "common": {
+    "loading": "Processing...",
     "cancel": "Cancel"
   },
   "pricing": {

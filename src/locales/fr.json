@@ -71,7 +71,11 @@
     "cardNumber": "Numéro de carte",
     "expiryDate": "Date d'expiration (MM/AA)",
     "cvv": "CVV",
-    "confirmCardPayment": "Confirmer le paiement par carte"
+    "confirmCardPayment": "Confirmer le paiement par carte",
+    "paymentMethods": "Méthodes de paiement",
+    "paymentStatus": "Statut de paiement",
+    "success": "Le paiement a été initié avec succès. Veuillez appeler * 126# ou #124: pour Orange",
+    "error": "Erreur de paiement. Veuillez réessayer."
   },
   "common": {
     "cancel": "Annuler"

@@ -13,6 +13,7 @@ const SuccessScreen = () => {
   const { t } = useTranslation();
 
   const price = data?.data?.data?.cost;
+  const id = data?.data?.data?.id;
   const itemName = data?.data?.data?.item_name;
   const deliveryCode = data?.data?.data?.delivery_code;
   const fromAddress = data?.data?.data?.from_address;
@@ -127,11 +128,15 @@ const SuccessScreen = () => {
           open={isMoMoModalOpen}
           onClose={() => setMoMoModalOpen(false)}
           method="Mobile Money"
+          requestId={id} 
+          amount={price} 
         />
         <PaymentModal
           open={isCardModalOpen}
           onClose={() => setCardModalOpen(false)}
           method="Card"
+          id={id} 
+          amount={price} 
         />
 
         {/* Download button */}

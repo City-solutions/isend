@@ -1,22 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { sendPaymentRequest, checkPaymentStatus } from '../services/paymentService';
 
-const InputField = ({ type, placeholder, value, onChange, className }) => (
+const InputField = ({ type, placeholder, value, onChange, readOnly, className }) => (
   <input
     type={type}
     placeholder={placeholder}
     value={value}
     onChange={onChange}
+    readOnly={readOnly}
     className={`w-full mb-3 p-3 border border-gray-300 rounded-lg text-center focus:outline-none ${className}`}
   />
 );
 
-const PaymentModal = ({ open, onClose, method }) => {
+const PaymentModal = ({ open, onClose, requestId, amount = 10 }) => {
   const { t } = useTranslation();
-  const [phoneNumber, setPhoneNumber] = useState('');
-  const [cardNumber, setCardNumber] = useState('');
-  const [expiryDate, setExpiryDate] = useState('');
-  const [cvv, setCvv] = useState('');
+  const [mobileWalletNumber, setMobileWalletNumber] = useState('');
+  const [name, setName] = useState('');
+  const [carrier, setCarrier] = useState('MTN_MOMO');
+  const [loading, setLoading] = useState(false);
+  const [polling, setPolling] = useState(false);
+  const [status, setStatus] = useState('');
 
   useEffect(() => {
     if (open) {
@@ -26,7 +30,7 @@ const PaymentModal = ({ open, onClose, method }) => {
     }
 
     return () => {
-      document.body.style.overflow = 'auto'; // Reset on component unmount
+      document.body.style.overflow = 'auto';
     };
   }, [open]);
 
@@ -36,10 +40,48 @@ const PaymentModal = ({ open, onClose, method }) => {
     }
   };
 
-  // Handle form submission for payment (just for demonstration)
-  const handlePayment = () => {
-    console.log({ phoneNumber, cardNumber, expiryDate, cvv });
-    onClose(); // Close the modal after payment (or reset state as necessary)
+  const handlePayment = async () => {
+    setLoading(true);
+    setStatus('');
+
+    const payload = {
+      amount,
+      mobileWalletNumber,
+      name,
+      requestId,
+      carrier,
+      currencyCode: 'XAF',
+      description: 'payment',
+    };
+
+    try {
+      const result = await sendPaymentRequest(payload);
+      setPolling(true);
+      setTimeout(() => pollPaymentStatus(requestId), 30000);
+    } catch (error) {
+      console.error('Payment Request Failed:', error);
+      alert(t('payment.error'));
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const pollPaymentStatus = async (requestId) => {
+    try {
+      const result = await checkPaymentStatus({ requestId });
+      const paymentStatus = result.data?.status || 'UNKNOWN';
+      setStatus(paymentStatus);
+
+      if (paymentStatus === 'SUCCESSFUL') {
+        alert(t('payment.success'));
+        onClose();
+      } else {
+        setTimeout(() => pollPaymentStatus(requestId), 30000); // Retry polling every 30 seconds
+      }
+    } catch (error) {
+      console.error('Payment Status Check Failed:', error);
+      alert(t('payment.statusError'));
+    }
   };
 
   if (!open) return null;
@@ -50,65 +92,49 @@ const PaymentModal = ({ open, onClose, method }) => {
       onClick={handleOutsideClick}
     >
       <div className="bg-white p-8 rounded-lg w-full max-w-md mx-4 shadow-lg relative">
-        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">
-          {t(`payment.${method === 'Mobile Money' ? 'mobileMoney' : 'cardPayment'}`)}
-        </h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">{t('payment.mobileMoney')}</h2>
 
-        {/* Form for Mobile Money */}
-        {method === 'Mobile Money' && (
-          <div className="flex flex-col items-center">
-            <p className="text-gray-600 mb-4 text-center">{t('payment.enterDetails')}</p>
-            <InputField
-              type="text"
-              placeholder={t('payment.phoneNumber')}
-              value={phoneNumber}
-              onChange={(e) => setPhoneNumber(e.target.value)}
-              className="focus:ring-green-500"
-            />
-            <button
-              onClick={handlePayment} // Handle payment action
-              className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-200"
-            >
-              {t('payment.confirmPayment')}
-            </button>
-          </div>
-        )}
+        <div className="flex flex-col items-center">
+          <InputField
+            type="text"
+            placeholder={t('payment.amount')}
+            value={`FCFA ${amount}`}
+            readOnly
+            className="bg-gray-100 focus:ring-gray-300"
+          />
 
-        {/* Form for Card Payment */}
-        {method === 'Card' && (
-          <div className="flex flex-col items-center">
-            <p className="text-gray-600 mb-4 text-center">{t('payment.enterCardDetails')}</p>
-            <InputField
-              type="text"
-              placeholder={t('payment.cardNumber')}
-              value={cardNumber}
-              onChange={(e) => setCardNumber(e.target.value)}
-              className="focus:ring-blue-500"
-            />
-            <InputField
-              type="text"
-              placeholder={t('payment.expiryDate')}
-              value={expiryDate}
-              onChange={(e) => setExpiryDate(e.target.value)}
-              className="focus:ring-blue-500"
-            />
-            <InputField
-              type="text"
-              placeholder={t('payment.cvv')}
-              value={cvv}
-              onChange={(e) => setCvv(e.target.value)}
-              className="focus:ring-blue-500"
-            />
-            <button
-              onClick={handlePayment} // Handle payment action
-              className="w-full bg-blue-500 text-white py-3 rounded-lg font-semibold hover:bg-blue-600 transition duration-200"
-            >
-              {t('payment.confirmCardPayment')}
-            </button>
-          </div>
-        )}
+          <InputField
+            type="text"
+            placeholder={t('payment.name')}
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        {/* Cancel Button */}
+          <InputField
+            type="text"
+            placeholder={t('payment.mobileWalletNumber')}
+            value={mobileWalletNumber}
+            onChange={(e) => setMobileWalletNumber(e.target.value)}
+          />
+
+          <select
+            value={carrier}
+            onChange={(e) => setCarrier(e.target.value)}
+            className="w-full mb-3 p-3 border border-gray-300 rounded-lg focus:outline-none text-center"
+          >
+            <option value="MTN_MOMO">MTN MOMO</option>
+            <option value="ORANGE_MOMO">ORANGE MOMO</option>
+          </select>
+
+          <button
+            onClick={handlePayment}
+            disabled={loading || polling}
+            className="w-full bg-green-500 text-white py-3 rounded-lg font-semibold hover:bg-green-600 transition duration-200 disabled:opacity-50"
+          >
+            {loading || polling ? t('common.loading') : t('payment.confirmPayment')}
+          </button>
+        </div>
+
         <button
           onClick={onClose}
           className="absolute top-4 right-4 text-gray-500 hover:text-gray-800"
@@ -116,6 +142,17 @@ const PaymentModal = ({ open, onClose, method }) => {
           {t('common.cancel')}
         </button>
       </div>
+
+      {/* Full-screen Loading Overlay */}
+      {(polling || loading) && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex flex-col items-center justify-center z-50">
+          <div className="text-white text-center">
+            <div className="animate-spin rounded-full h-16 w-16 border-t-4 border-white border-opacity-50 mb-4"></div>
+            <p className="text-lg font-semibold">{t('payment.pollingMessage')}</p>
+            <p className="mt-2">{t('payment.dialMessage')}</p>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
