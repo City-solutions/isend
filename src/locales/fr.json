@@ -126,6 +126,7 @@
     "from_address": "Adresse d'origine",
     "to_address": "Adresse de destination",
     "status": "Statut",
+    "payment_status": "Statut de Paiement",
     "important_notes": "Notes importantes sur la livraison",
     "important_note_message": "Veuillez noter que le statut de la livraison est mis à jour en temps réel. Cependant, les délais de livraison peuvent être soumis à des facteurs externes tels que les conditions météorologiques, le trafic et les retards imprévus. Pour toute demande urgente ou question, veuillez contacter notre équipe d'assistance.",
     "note_1": "Assurez-vous que le destinataire soit disponible à l'adresse de livraison pendant l'heure de livraison estimée.",

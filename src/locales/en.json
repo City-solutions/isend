@@ -126,6 +126,7 @@
     "from_address": "From Address",
     "to_address": "To Address",
     "status": "Status",
+    "payment_status": "Payment Status",
     "important_notes": "Important Delivery Notes",
     "important_note_message": "Please note that the delivery status is updated in real-time. However, the delivery times might be subject to external factors such as weather conditions, traffic, and unforeseen delays. For any urgent requests or inquiries, please contact our support team directly.",
     "note_1": "Ensure the recipient is available at the delivery address during the estimated delivery time.",

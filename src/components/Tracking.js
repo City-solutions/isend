@@ -23,7 +23,7 @@ const Tracking = () => {
 
         try {
             const status = await fetchDeliveryStatus(deliveryCode);
-            setDeliveryStatus(status);
+            setDeliveryStatus(status.data);
         } catch (err) {
             setError(t('tracking.fetch_error'));
         } finally {
@@ -33,7 +33,7 @@ const Tracking = () => {
 
     return (
         <div className="tracking-container mx-auto max-w-full p-8 bg-white rounded-lg shadow-lg border border-dark-blue min-h-[450px]">
-            <div className="bg-gradient-to-r from-[#1f237e] via-[#1a032e] to-[#0a237e] text-white p-8 rounded-t-lg shadow-lg mb-6 p-12">
+            <div className="bg-gradient-to-r from-[#1f207e] via-[#1a002e] to-[#00207b] text-white p-8 rounded-t-lg shadow-lg mb-6 p-12">
                 <h2 className="text-3xl font-semibold text-center mb-4">
                     <FontAwesomeIcon icon={faTruck} className="mr-2" />
                     {t('tracking.track_your_delivery')}
@@ -95,6 +95,7 @@ const Tracking = () => {
                                     <th className="border px-4 py-2">{t('tracking.from_address')}</th>
                                     <th className="border px-4 py-2">{t('tracking.to_address')}</th>
                                     <th className="border px-4 py-2">{t('tracking.status')}</th>
+                                    <th className="border px-4 py-2">{t('tracking.payment_status')}</th>
                                 </tr>
                             </thead>
 
@@ -106,7 +107,24 @@ const Tracking = () => {
                                     <td className="border px-4 py-2">{deliveryStatus.cost}</td>
                                     <td className="border px-4 py-2">{deliveryStatus.from_address}</td>
                                     <td className="border px-4 py-2">{deliveryStatus.to_address}</td>
-                                    <td className="border px-4 py-2">{deliveryStatus.delivery_status}</td>
+                                    <td className="border px-4 py-2">
+                                        <span
+                                            className={`badge rounded-full p-2 text-white ${deliveryStatus.delivery_status === 'delivered' ? 'bg-green-600' : 'bg-yellow-600'
+                                                }`}
+                                        >
+                                            {deliveryStatus.delivery_status}
+                                        </span>
+                                    </td>
+
+                                    <td className="border px-4 py-2">
+                                        <span
+                                            className={`badge rounded-full p-2 text-white ${deliveryStatus.payment_status === 'completed' ? 'bg-green-600' : 'bg-yellow-600'
+                                                }`}
+                                        >
+                                            {deliveryStatus.payment_status}
+                                        </span>
+                                    </td>
+
                                 </tr>
                             </tbody>
                         </table>
