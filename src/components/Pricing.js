@@ -78,6 +78,16 @@ const Pricing = () => {
             </a>
           </div>
         </div>
+
+        {/* Link to Price Calculation Page */}
+        <div className="mt-10">
+          <a
+            href="/price-calc"
+            className="cta-button bg-blue-500 text-white font-semibold py-3 px-6 rounded-full hover:bg-blue-600 hover:text-white transition duration-200"
+          >
+            {t('pricing.pricePageButton.cta')}
+          </a>
+        </div>
       </div>
     </section>
   );

@@ -93,6 +93,16 @@ const GetPrice = () => {
       googleMapsApiKey="AIzaSyBEfyuMVyPbaYNEDUXgbEE_SCoNC1y6kaw"
       libraries={libraries}
     >
+      <div className="absolute inset-0 z-0">
+        <div className="bg-blue-300 rounded-full w-64 h-64 absolute top-0 left-10 animate-shape1 opacity-30"></div>
+        <div className="bg-blue-400 rounded-full w-48 h-48 absolute top-10 right-10 animate-shape2 opacity-40"></div>
+        <div className="bg-blue-500 rounded-full w-72 h-72 absolute bottom-20 left-20 animate-shape3 opacity-30"></div>
+        <div className="bg-blue-600 rounded-full w-56 h-56 absolute bottom-10 right-20 animate-shape4 opacity-20"></div>
+        <div className="bg-blue-500 rounded-full w-80 h-80 absolute top-1/2 left-1/4 animate-shape5 opacity-25"></div>
+        <div className="bg-blue-400 rounded-full w-52 h-52 absolute top-1/4 right-1/4 animate-shape6 opacity-30"></div>
+        <div className="bg-blue-300 rounded-full w-36 h-36 absolute bottom-1/4 left-1/4 animate-shape7 opacity-40"></div>
+        <div className="bg-blue-600 rounded-full w-40 h-40 absolute top-1/4 left-1/2 animate-shape8 opacity-25"></div>
+      </div>
       <div className="flex flex-col lg:flex-row lg:space-x-6 max-w-6xl mx-auto p-8">
         <div className="lg:w-2/3 bg-white p-8 rounded-2xl shadow-xl transition-all transform hover:scale-105">
           <h2 className="text-3xl font-semibold text-gray-800 mb-6">{t("Select Items and Calculate Price")}</h2>

@@ -93,13 +93,16 @@
     },
     "monthlySubscription": {
       "title": "Monthly Subscription",
-      "description": "Unlimited deliveries for a fixed monthly price.",
+      "description": "Pay monthly for unlimited deliveries.",
       "cta": "Choose Plan"
     },
     "premiumPackage": {
       "title": "Premium Package",
-      "description": "Priority deliveries and additional features.",
+      "description": "All-inclusive plan with extra perks.",
       "cta": "Choose Plan"
+    },
+    "pricePageButton": {
+      "cta": "Go to Price Page"
     }
   },
   "success_screen": {
@@ -166,4 +169,3 @@
     "statusMessageSubmitted": "Message Submitted"
   }
 }
-

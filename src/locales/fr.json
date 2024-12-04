@@ -89,13 +89,16 @@
     },
     "monthlySubscription": {
       "title": "Abonnement Mensuel",
-      "description": "Livraisons illimitées pour un prix mensuel fixe.",
+      "description": "Payez mensuellement pour des livraisons illimitées.",
       "cta": "Choisir le plan"
     },
     "premiumPackage": {
       "title": "Forfait Premium",
-      "description": "Livraisons prioritaires et fonctionnalités supplémentaires.",
+      "description": "Plan tout compris avec des avantages supplémentaires.",
       "cta": "Choisir le plan"
+    },
+    "pricePageButton": {
+      "cta": "Aller à la page des prix"
     }
   },
   "success_screen": {
