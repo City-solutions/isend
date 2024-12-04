@@ -1,18 +1,19 @@
-import React, { createContext, useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Aos from 'aos';
-import 'aos/dist/aos.css';
-import Header from './components/Header';
-import Footer from './components/Footer';
-import Hero from './components/Hero';
-import RequestForm from './components/RequestForm';
-import HowItWorks from './components/HowItWorks';
-import Pricing from './components/Pricing';
-import Contact from './components/Contact';
-import SuccessScreen from './components/SuccessScreen';
-import Tracking from './components/Tracking';
-import NotFound from './components/NotFound';  // Importing custom 404 page
-import './i18n'
+import React, { createContext, useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Aos from "aos";
+import "aos/dist/aos.css";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import Hero from "./components/Hero";
+import RequestForm from "./components/RequestForm";
+import HowItWorks from "./components/HowItWorks";
+import Pricing from "./components/Pricing";
+import Contact from "./components/Contact";
+import SuccessScreen from "./components/SuccessScreen";
+import Tracking from "./components/Tracking";
+import NotFound from "./components/NotFound"; // Importing custom 404 page
+import "./i18n";
+import GetPrice from "./components/GetPrice";
 
 export const AppContext = createContext();
 
@@ -102,6 +103,16 @@ function App() {
                 </PageLayout>
               }
             />
+
+            <Route
+              path="/price-calc"
+              element={
+                <PageLayout>
+                  <GetPrice />
+                </PageLayout>
+              }
+            />
+
             {/* Catch-all route for undefined paths */}
             <Route path="*" element={<NotFound />} />
           </Routes>

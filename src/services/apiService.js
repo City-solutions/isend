@@ -47,3 +47,15 @@ export const submitContact = async (formData) => {
     throw error;
   }
 };
+
+
+export const calculatePrice = async (data) => {
+  try {
+    const response = await axios.post(`${API_URL}/pickup-requests/price/calculate`, data);
+    console.log(response.data);
+    return response.data;
+  } catch (error) {
+    console.error("Error calculating price:", error);
+    throw error;
+  }
+};
