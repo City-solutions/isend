@@ -35,7 +35,7 @@ const Hero = () => {
           >
             {t('hero.getStarted')}
           </a>
-          <a
+          {/* <a
             href="https://play.google.com/store/apps/details?id=com.citysolution.isend&pcampaignid=web_share"
             target="_blank"
             rel="noopener noreferrer"
@@ -43,7 +43,7 @@ const Hero = () => {
           >
             <i className="fab fa-google-play text-xl"></i>
             <span className="text-sm">{t('hero.getApp')}</span>
-          </a>
+          </a> */}
           <a
             href="/track"
             className="bg-blue-700 text-white font-semibold py-3 px-6 rounded-full shadow-lg hover:bg-blue-800 transition duration-300 transform hover:scale-105"
