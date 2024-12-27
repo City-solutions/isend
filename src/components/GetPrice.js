@@ -90,7 +90,7 @@ const GetPrice = () => {
 
   return (
     <LoadScript
-      googleMapsApiKey="AIzaSyBEfyuMVyPbaYNEDUXgbEE_SCoNC1y6kaw"
+    googleMapsApiKey={process.env.REACT_APP_GOOGLE_MAPS_API_KEY}
       libraries={libraries}
     >
       <div className="absolute inset-0 z-0">

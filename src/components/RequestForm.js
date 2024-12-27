@@ -35,11 +35,11 @@ const RequestForm = () => {
 
   const pickupRef = useRef(null);
   const dropOffRef = useRef(null);
-  const directionsFetched = useRef(false); // Flag to ensure directions are fetched only once
+  const directionsFetched = useRef(false);
   const navigate = useNavigate();
-
+  
   const { isLoaded, loadError } = useLoadScript({
-    googleMapsApiKey: "AIzaSyBEfyuMVyPbaYNEDUXgbEE_SCoNC1y6kaw",
+    googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
   });
 
