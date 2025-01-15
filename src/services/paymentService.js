@@ -5,7 +5,8 @@ const API_URL = process.env.REACT_APP_BACKEND_URL;
 export const sendPaymentRequest = async (payload) => {
   try {
     console.log(payload)
-    const response = await axios.post(API_URL, payload, {
+    const requestUrl = `${API_URL}/pay`;
+    const response = await axios.post(requestUrl, payload, {
       headers: {
         'Content-Type': 'application/json',
       },
